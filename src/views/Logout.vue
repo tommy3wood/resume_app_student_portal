@@ -1,20 +1,18 @@
 <template>
-  <div class="home">
-    <h1>{{ message }}</h1>
+  <div class="logout">
   </div>
 </template>
 
-<style>
-</style>
-
 <script>
+import axios from "axios";
+
 export default {
-  data: function() {
-    return {
-      message: "Welcome to Vue.js!"
-    };
-  },
-  created: function() {},
-  methods: {}
+  created: function() {
+    delete axios.defaults.headers.common["Authorization"];
+    localStorage.removeItem("jwt");
+    this.$parent.userEmail = "" 
+    localStorage.removeItem("userEmail")
+    this.$router.push("/");
+  }
 };
 </script>
