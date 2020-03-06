@@ -46,7 +46,7 @@ export default {
           this.$parent.userEmail = response.data.email;
           localStorage.setItem("userEmail", response.data.email);
 
-          this.$router.push("/"); 
+          this.$router.push("/students/1"); 
         })
         .catch(error => {
           this.errors = ["Invalid email or password"];

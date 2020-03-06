@@ -1,5 +1,5 @@
 <template>
-  <div class="student-show">
+  <div class="student-edit">
     <div class="container">
       <div class="edit-bio-form">
         <h1>Bio</h1>
