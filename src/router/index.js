@@ -20,7 +20,7 @@ const routes = [
   {path: '/newproject', name: 'new-project',component: NewProject},
   {path: '/newskill', name: 'new-skill',component: NewSkill},
   {path: '/students/:id', name: 'student-show',component: Show},
-  {path: '/students/:id/edit', name: 'student-edit',component: Edit}
+  {path: '/students/:id/edit', name: 'edit',component: Edit}
 ]
 
 const router = new VueRouter({
