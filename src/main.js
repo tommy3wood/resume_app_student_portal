@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import axios from "axios";
 
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "development" ? "https://hidden-dawn-34584.herokuapp.com/" : "https://hidden-dawn-34584.herokuapp.com/";
+
 Vue.config.productionTip = false
 
 new Vue({
