@@ -51,7 +51,7 @@
       <div>
         <h1>SKILLS</h1>
         <ul>
-          <li>Skill: {{skill.skillName}}</li>
+          <li>Skill: {{skill.skill_name}}</li>
         </ul>
       </div>
 

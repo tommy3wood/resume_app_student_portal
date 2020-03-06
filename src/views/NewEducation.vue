@@ -64,7 +64,7 @@
       methods: {
         addEducation: function() {
           var clientParams = {
-            id: this.current_student.id,
+            //student_id: 1,
             start_date: this.startDate,
             end_date: this.endDate,
             university_name: this.universityName,
@@ -73,7 +73,8 @@
           };
 
           axios
-            .post(`/api/students/${this.$route.params.id}/educations/new`, clientParams)
+            .post(`/api/educations`, clientParams)
+            console.log('working')
             .then(response => {
               this.$router.push("/show");
             }).catch(error => {

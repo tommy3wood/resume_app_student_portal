@@ -74,7 +74,7 @@
         };
 
         axios
-          .post(`/api/students/${this.$route.params.id}/educations/new`, clientParams)
+          .post(`/api/students/${this.$route.params.id}/experiences/new`, clientParams)
           .then(response => {
             this.$router.push("/show");
           }).catch(error => {

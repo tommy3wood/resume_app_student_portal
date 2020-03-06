@@ -39,14 +39,14 @@
     methods: {
       newSkill: function() {
         var clientParams = {
-          id: this.current_student.id,
-          name: this.skill,
+          student_id: 1,
+          skill_name: this.skill
         };
 
         axios
-          .post(`/api/students/${this.$route.params.id}/educations/new`, clientParams)
+          .post(`/api/skills`, clientParams)
           .then(response => {
-            this.$router.push("/show");
+            this.$router.push("/students/1");
           }).catch(error => {
             this.errors = error.response.data.errors;
             this.status = error.response.status; 
