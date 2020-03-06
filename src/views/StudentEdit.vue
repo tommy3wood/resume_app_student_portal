@@ -3,137 +3,140 @@
     <div class="container">
       <div class="edit-bio-form">
         <h1>Bio</h1>
-        <ul style="list-style-type: none;">
-          <li>
-            First Name:
-            <input type="text" v-model="student.first_name">
-          </li>
+          <form>
+            <div>
+              First Name:
+              <input type="text" v-model="student.first_name">
+            </div>
 
-          <li>
-            Last Name: 
-            <input type="text" v-model="student.last_name">
-          </li>
-          <li>
-            Email: 
-            <input type="text" v-model="student.email"> 
-          </li>
-          <li>
-            Phone:
-            <input type="text" v-model="student.phone_number">
-         </li>
-          <li>
-            Bio: 
-            <input type="text" v-model="student.short_bio">
-          </li>
-          <li>
-            LinkedIn: 
-            <input type="text" v-model="student.linkedin_url">
-          </li>
-          <li>
-            Personal Site:
-            <input type="text" v-model="student.personal_website_url">
-          </li>
-          <li>
-            GitHub: 
-            <input type="text" v-model="student.github_url">
-          </li>
-          <li>
-            Location: 
-            <input type="text" v-model="student.city_state">
-          </li>
-        </ul>
-        <button @click="updateBio(student)">Update</button>
+            <div>
+              Last Name: 
+              <input type="text" v-model="student.last_name">
+            </div>
+            <div>
+              Email: 
+              <input type="text" v-model="student.email"> 
+            </div>
+            <div>
+              Phone:
+              <input type="text" v-model="student.phone_number">
+           </div>
+            <div>
+              Bio: 
+              <input type="text" v-model="student.short_bio">
+            </div>
+            <div>
+              LinkedIn: 
+              <input type="text" v-model="student.linkedin_url">
+            </div>
+            <div>
+              Personal Site:
+              <input type="text" v-model="student.personal_website_url">
+            </div>
+            <div>
+              GitHub: 
+              <input type="text" v-model="student.github_url">
+            </div>
+            <div>
+              Location: 
+              <input type="text" v-model="student.city_state">
+            </div>
+          <
+          <button @click="updateBio(student)">Update</button>
+        </form>  
       </div>
-
+      
       <div class="edit-experience-form">
         <h1>Experience</h1>
-        <ul style="list-style-type: none;">
-          <li>
-            Company Name:
-            <input type="text" v-model="experience.company_name">
-          </li>
-          <li>
-            Start Date:
-            <input type="date" v-model="experience.start_date">
-          </li>
-          <li>
-            End Date:
-            <input type="date" v-model="experience.end_date">
-          </li>
-          <li>
-            Title:
-            <input type="text" v-model="experience.job_title">
-          </li>
-          <li>
-            Details:
-            <input type="text" v-model="experience.details">
-          </li>
-          <li>
-            Current: 
-            <input type="text" v-model="experience.current">
-          </li>
-        </ul>
-        <button @click="updateExperience(experience)">Update</button>
+        <form v-for="experience in student.experiences">
+            <div>
+              Company Name:
+              <input type="text" v-model="experience.company_name">
+            </div>
+            <div>
+              Start Date:
+              <input type="date" v-model="experience.start_date">
+            </div>
+            <div>
+              End Date:
+              <input type="date" v-model="experience.end_date">
+            </div>
+            <div>
+              Title:
+              <input type="text" v-model="experience.job_title">
+            </div>
+            <div>
+              Details:
+              <input type="text" v-model="experience.details">
+            </div>
+            <div>
+              Current: 
+              <input type="text" v-model="experience.current">
+            </div>
+          <button @click="updateExperience(experience)">Update</button>
+          <button @click="destroyExperience(experience)">Delete</button>
+        </form>
       </div>
 
       <div class="edit-education-form">
         <h1>Education</h1>
-        <ul style="list-style-type: none;">
-          <li>
-            Institution Name:
-            <input type="text" v-model="education.university_name">
-          </li>
-          <li>
-            Start:
-            <input type="date" v-model="education.start_date">
-          </li>
-          <li>
-            End:
-            <input type="date" v-model="education.end_time">
-          </li>
-          <li>
-            Degree:
-            <input type="text" v-model="education.degree">
-          </li>
-          <li>
-            Details:
-            <input type="text" v-model="education.details">
-          </li>
-        </ul>
-        <button @click="updateEducation(education)">Update</button>
+        <form v-for="education in student.educations">
+            <div>
+              Institution Name:
+              <input type="text" v-model="education.university_name">
+            </div>
+            <div>
+              Start:
+              <input type="date" v-model="education.start_date">
+            </div>
+            <div>
+              End:
+              <input type="date" v-model="education.end_time">
+            </div>
+            <div>
+              Degree:
+              <input type="text" v-model="education.degree">
+            </div>
+            <div>
+              Details:
+              <input type="text" v-model="education.details">
+            </div>
+          <button @click="updateEducation(education)">Update</button>
+          <button @click="destroyEducation(education)">Delete</button>
+        </form>
       </div>
 
       <div class="edit-projects-form">
         <h1>Projects</h1>
-        <ul style="list-style-type: none;">
-          <li>
+        <form v-for="project in student.projects">
+          <div>
             Name:
             <input type="text" v-model="project.name">
-          </li>
-          <li>
+          </div>
+          <div>
             Description: 
             <input type="text" v-model="project.description">
-          </li>
-          <li>
+          </div>
+          <div>
             Url:
             <input type="text" v-model="project.url">
-          </li>
-        </ul>
-        <button @click="updateProject(project)">Update</button>
+          </div>
+          <button @click="updateProject(project)">Update</button>
+          <button @click="destroyProject(project)">Delete</button>
+        </form>
       </div>
 
       <div class="edit-skills-form">
         <h1>SKILLS</h1>
-        <ul style="list-style-type: none;">
-          <li>
+        <form v-for="skill in student.skills">
+          <div>
             Skill:
             <input type="text" v-model="skill.skill_name">
-          </li>
-        </ul>
-        <button @click="updateSkill(skill)">Update</button>
+          </div>
+          <button @click="updateSkill(skill)">Update</button>
+          <button @click="destroySkill(skill)">Delete</button>
+        </form>
       </div>
-
-      <router-link v-bind:to="'/edit'">Edit Profile</router-link>
     </div>
   </div>
 </template>
@@ -145,39 +148,20 @@ export default {
   data: function() {
     return {
       student: {
-      first_name: "Rob",
-      last_name: "Kondradowicz",
-      email: "rob@gamil.com",
-      phone_number: "708-777-7689",
-      short_bio: "Eats his soup. Also, he codes.",
-      linkedin_url: "https://www.linkedin.com/in/robkondratowicz",
-      personal_website_url: "https://www.linkedin.com/in/robkondratowicz",
-      github_url: "https://github.com/EatYourSoup7",
-      city_state: "Chicago, IL"
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone_number: "",
+      short_bio: "",
+      linkedin_url: "",
+      personal_website_url: "",
+      github_url: "",
+      city_state: "",
+      experience: [],
+      education: [],
+      project: [],
+      skill: []
       },
-      experience: {
-        company_name: "Litera Microsystems",
-        start_date: "12-10-2018",
-        end_date: "10-12-2019",
-        job_title: "CGTFOO",
-        current: false,
-        details: "young cold brew king"
-      },
-      education: {
-        start_date: "11-23-1991",
-        end_date: "12-25-1995",
-        university_name: "Ohio University",
-        degree: "Math",
-        details: "Varsity Math"
-      },
-      project: {
-        name: "Full Measure",
-        description: "community watchdog app",
-        url: "www.reddit.com"
-      },
-      skill: {
-        skill_name: "Walking backwards"
-      }
     };
   },
   created: function() {
@@ -186,26 +170,6 @@ export default {
       .then(response => {
         console.log(response.data);
         this.student = response.data;
-      });
-    axios
-      .get("/api/students/" + this.$route.params.id + "/experiences/" + this.$route.params.id)
-      .then(response => {
-        this.experiences = response.data;
-      });
-    axios
-      .get("/api/students/" + this.$route.params.id + "/educations/" + this.$route.params.id)
-      .then(response => {
-        this.experiences = response.data;
-      });
-    axios
-      .get("/api/students/" + this.$route.params.id + "/projects/" + this.$route.params.id)
-      .then(response => {
-        this.projects = response.data;
-      });
-    axios
-      .get("/api/students/" + this.$route.params.id + "/skills/" + this.$route.params.id)
-      .then(response => {
-        this.skills = response.data;
       });
   },
   methods: {
@@ -250,6 +214,13 @@ export default {
       var clientParams = {
         skill: inputSkill.skill_name
       }
+    },
+    destroyExperience: function(inputExperience) {
+      axios
+        .delete("/api/students/" + this.$route.params.id + "/experiences/" + inputExperience.id)
+        .then(response => {
+
+        })
     },
   }
 };
