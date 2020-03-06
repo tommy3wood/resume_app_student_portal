@@ -1,7 +1,7 @@
 <template>
-  <div class="new-skill">
+  <div class="new-skill container">
     <div>
-      <form class="col-sm-6" v-on:submit.prevent="newSkill()">
+      <form class="col-sm-6 col-md-6 col-lg-12" v-on:submit.prevent="newSkill()">
         <h1 class="text-center mb-5">New Skill</h1>
 
         <ul>
@@ -39,14 +39,14 @@
     methods: {
       newSkill: function() {
         var clientParams = {
-          id: this.current_student.id,
-          name: this.skill,
+          student_id: 1,
+          skill_name: this.skill
         };
 
         axios
-          .post(`/api/students/${this.$route.params.id}/educations/new`, clientParams)
+          .post(`/api/skills`, clientParams)
           .then(response => {
-            this.$router.push("/show");
+            this.$router.push("/students/1");
           }).catch(error => {
             this.errors = error.response.data.errors;
             this.status = error.response.status; 

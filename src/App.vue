@@ -3,8 +3,8 @@
     <div id="nav">
       <router-link to="/">Login</router-link> |
       <router-link to="/logout">Logout</router-link> |
-      <router-link to="/students/1">Student Profile</router-link> |
-      <router-link to="/students/1/edit">Edit Student Profile</router-link>
+      <router-link to="/students/:id">Student Profile</router-link> |
+      <router-link to="/edit">Edit Student Profile</router-link>
     </div>
     <router-view/>
   </div>
