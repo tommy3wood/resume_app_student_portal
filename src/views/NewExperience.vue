@@ -1,7 +1,7 @@
 <template>
-  <div class="new-experience">
+  <div class="new-experience container">
     <div>
-      <form class="col-sm-6" v-on:submit.prevent="newWorkExperience()">
+      <form class="col-sm-6 col-md-6 col-lg-12" v-on:submit.prevent="newWorkExperience()">
         <h1 class="text-center mb-5">New Work Experience</h1>
 
         <ul>
@@ -64,19 +64,20 @@
     methods: {
       newWorkExperience: function() {
         var clientParams = {
-          id: this.current_student.id,
+          student_id: 1,
+          // this.current_student.id,
           company_name: this.companyName,
-          start_Date: this.startDate,
-          end_Date: this.endDate,
+          start_date: this.startDate,
+          end_date: this.endDate,
           job_title: this.jobTitle,
           current: this.current,
           details: this.details
         };
 
         axios
-          .post(`/api/students/${this.$route.params.id}/experiences/new`, clientParams)
+          .post(`/api/experiences`, clientParams)
           .then(response => {
-            this.$router.push("/show");
+            this.$router.push("/students/1");
           }).catch(error => {
             this.errors = error.response.data.errors;
             this.status = error.response.status; 

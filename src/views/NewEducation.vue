@@ -1,8 +1,8 @@
 <template>
-    <div class="new-education">
+    <div class="new-education container">
 
       <div>
-        <form class="col-sm-6" v-on:submit.prevent="addEducation()">
+        <form class="col-sm-6 col-md-6 col-lg-12" v-on:submit.prevent="addEducation()">
           <h1 class="text-center mb-5">New Education</h1>
 
           <ul>
@@ -64,7 +64,7 @@
       methods: {
         addEducation: function() {
           var clientParams = {
-            //student_id: 1,
+            student_id: 1,
             start_date: this.startDate,
             end_date: this.endDate,
             university_name: this.universityName,
@@ -73,10 +73,11 @@
           };
 
           axios
-            .post(`/api/educations`, clientParams)
-            console.log('working')
+            .post("/api/educations", clientParams)
+            // console.log('working')
             .then(response => {
-              this.$router.push("/show");
+              console.log(response)
+              this.$router.push("/students/1");
             }).catch(error => {
               this.errors = error.response.data.errors;
               this.status = error.response.status; 

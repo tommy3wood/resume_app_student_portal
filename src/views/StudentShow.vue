@@ -17,41 +17,41 @@
       </div>
 
       <div>
-        <h1>experience</h1>
+        <h1>Experience</h1>
         <ul v-for="experience in student.experiences">
-          <li>company name: {{experience.company_name}}</li>
-          <li>start date: {{experience.start_date}}</li>
-          <li>end date: {{experience.end_date}}</li>
-          <li>title: {{experience.job_title}}</li>
-          <li>details: {{experience.details}}</li>
-          <li>current: {{experience.current}}</li>
+          <li>Company name: {{experience.company_name}}</li>
+          <li>Start date: {{experience.start_date}}</li>
+          <li>End date: {{experience.end_date}}</li>
+          <li>Title: {{experience.job_title}}</li>
+          <li>Details: {{experience.details}}</li>
+          <li>Current: {{experience.current}}</li>
         </ul>
       </div>
 
       <div>
-        <h1>education</h1>
+        <h1>Education</h1>
         <ul v-for="education in student.educations">
-          <li>institution name: {{education.university_name}}</li>
-          <li>start: {{education.start_date}}</li>
-          <li>end: {{education.end_date}}</li>
-          <li>degree: {{education.degree}}</li>
-          <li>details: {{education.details}}</li>
+          <li>Institution name: {{education.university_name}}</li>
+          <li>Start Date: {{education.start_date}}</li>
+          <li>End Date: {{education.end_date}}</li>
+          <li>Degree: {{education.degree}}</li>
+          <li>Details: {{education.details}}</li>
         </ul>
       </div>
 
       <div>
-        <h1>projects</h1>
+        <h1>Projects</h1>
         <ul v-for="project in student.projects">
-          <li>name: {{project.name}}</li>
-          <li>description: {{project.description}}</li>
-          <li>url: {{project.url}}</li>
+          <li>Name: {{project.name}}</li>
+          <li>Description: {{project.description}}</li>
+          <li>URL: {{project.url}}</li>
         </ul>
       </div>
 
       <div>
-        <h1>skills</h1>
+        <h1>Skills</h1>
         <ul v-for="skill in student.skills">
-          <li>skill: {{skill.skill_name}}</li>
+          <li>Skill: {{skill.skill_name}}</li>
         </ul>
       </div>
 

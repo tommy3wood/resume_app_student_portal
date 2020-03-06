@@ -1,7 +1,7 @@
 <template>
-  <div class="new-skill">
+  <div class="new-skill container">
     <div>
-      <form class="col-sm-6" v-on:submit.prevent="newSkill()">
+      <form class="col-sm-6 col-md-6 col-lg-12" v-on:submit.prevent="newSkill()">
         <h1 class="text-center mb-5">New Skill</h1>
 
         <ul>
