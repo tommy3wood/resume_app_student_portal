@@ -3,7 +3,7 @@
     <div class="container">
       <div class="edit-bio-form">
         <h1>Bio</h1>
-          <form>
+          <form v-on:submit.prevent="updateBio()">
             <div>
               First Name:
               <input type="text" v-model="student.first_name">
@@ -41,14 +41,13 @@
               Location: 
               <input type="text" v-model="student.city_state">
             </div>
-          <
-          <button @click="updateBio(student)">Update</button>
+          <input type="submit" value="update">
         </form>  
       </div>
       
       <div class="edit-experience-form">
         <h1>Experience</h1>
-        <form v-for="experience in student.experiences">
+        <form v-for="experience in student.experiences" v-on:submit.prevent="updateExperience()">
             <div>
               Company Name:
               <input type="text" v-model="experience.company_name">
@@ -73,14 +72,14 @@
               Current: 
               <input type="text" v-model="experience.current">
             </div>
-          <button @click="updateExperience(experience)">Update</button>
+          <input type="submit" value="update">
           <button @click="destroyExperience(experience)">Delete</button>
         </form>
       </div>
 
       <div class="edit-education-form">
         <h1>Education</h1>
-        <form v-for="education in student.educations">
+        <form  v-for="education in student.educations" v-on:submit.prevent="updateEducation()">
             <div>
               Institution Name:
               <input type="text" v-model="education.university_name">
@@ -101,14 +100,14 @@
               Details:
               <input type="text" v-model="education.details">
             </div>
-          <button @click="updateEducation(education)">Update</button>
+          <input type="submit" value="update">
           <button @click="destroyEducation(education)">Delete</button>
         </form>
       </div>
 
       <div class="edit-projects-form">
         <h1>Projects</h1>
-        <form v-for="project in student.projects">
+        <form v-for="project in student.projects" v-on:submit.prevent="updateProject()">
           <div>
             Name:
             <input type="text" v-model="project.name">
@@ -121,19 +120,19 @@
             Url:
             <input type="text" v-model="project.url">
           </div>
-          <button @click="updateProject(project)">Update</button>
+           <input type="submit" value="update">
           <button @click="destroyProject(project)">Delete</button>
         </form>
       </div>
 
       <div class="edit-skills-form">
         <h1>SKILLS</h1>
-        <form v-for="skill in student.skills">
+        <form v-for="skill in student.skills" v-on:submit.prevent="updateSkills()">
           <div>
             Skill:
             <input type="text" v-model="skill.skill_name">
           </div>
-          <button @click="updateSkill(skill)">Update</button>
+          <input type="submit" value="update">
           <button @click="destroySkill(skill)">Delete</button>
         </form>
       </div>
@@ -162,55 +161,92 @@ export default {
       project: [],
       skill: []
       },
+      errors: []
     };
   },
   created: function() {
     axios
-      .get("/api/students/" + this.$route.params.id)
+      .get("/api/students/" + 1)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.student = response.data;
       });
   },
   methods: {
-    updateBio: function(inputBio) {
+    updateBio: function() {
       var clientParams = {
-        first_name: inputBio.first_name,
-        last_name: inputBio.last_name,
-        email: inputBio.email,
-        phone_number: inputBio.phone_number,
-        short_bio: inputBio.short_bio,
-        linkedin_url: inputBio.linkedin_url,
-        personal_website_url: inputBio.personal_website_url,
-        github_url: inputBio.github_url,
-        city_state: inputBio.city_state
+        first_name: this.student.first_name,
+        last_name: this.student.last_name,
+        email: this.student.email,
+        phone_number: this.student.phone_number,
+        short_bio: this.student.short_bio,
+        linkedin_url: this.student.linkedin_url,
+        personal_website_url: this.student.personal_website_url,
+        github_url: this.student.github_url,
+        city_state: this.student.city_state
       };
+      axios
+      .patch("/api/students/1", clientParams)
+      .then(response => {
+        this.student = response.data
+        this.$router.push("/students/1")
+        console.log(response.data);
+      }).catch(error => {
+        this.errors = error.response.data.errors;
+        console.log(errors.response.data)
+      });
     },
-    updateExperience: function(inputExperience) {
+    updateExperience: function() {
+      console.log("test");
+      console.log(this.experience);
       var clientParams = {
-        company_name: inputExperience.company_name,
-        start_date: inputExperience.start_date,
-        end_date: inputExperience.end_date,
-        job_title: inputExperience.job_title,
-        current: inputExperience.current,
-        details: inputExperience.details
-      }
+        company_name: this.experience.company_name,
+        start_date: this.experience.start_date,
+        end_date: this.experience.end_date,
+        job_title: this.experience.job_title,
+        current: this.experience.current,
+        details: this.experience.details
+      };
+      axios
+      .patch("/api/experiences/2", clientParams)
+      .then(response => {
+        this.$router.push("/students/" + 1)
+      }).catch(error => {
+        this.errors = error.response.data.errors;
+        console.log(errors.response.data)
+      });
     },
-    updateEducation: function(inputEducation) {
+    updateEducation: function() {
       var clientParams = {
-        university_name: inputEducation.university_name,
-        degree: inputEducation.degree,
-        details: inputEducation.details
-      }
+        university_name: this.education.university_name,
+        degree: this.education.degree,
+        details: this.education.details
+      };
+      axios
+      .patch("/api/educations/5", clientParams)
+      .then(response => {
+        this.$router.push("/students/" + 1)
+      }).catch(error => {
+        this.errors = error.response.data.errors;
+        console.log(errors.response.data)
+      });
     },
-    updateProject: function(inputProject) {
+    updateProject: function() {
       var clientParams = {
         name: inputProject.name,
         description: inputProject.description,
         url: inputProject.url
-      }
+      };
+      axios
+      .patch("/api/projects/2" + this.inputProject.id, clientParams)
+      .then(response => {
+        this.$router.push("/students/" + 1)
+      }).catch(error => {
+        this.errors = error.response.data.errors;
+        console.log(errors)
+      });
     },
-    updateSkill: function(inputSkill) {
+    updateSkill: function() {
       var clientParams = {
         skill: inputSkill.skill_name
       }

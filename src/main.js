@@ -7,6 +7,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === "development" ? "https://hidden-dawn-34584.herokuapp.com" : "https://hidden-dawn-34584.herokuapp.com";
+  
+
+  var jwt = localStorage.getItem("jwt");
+  if (jwt) {
+    axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+  }
 
   var jwt = localStorage.getItem("jwt");
   if (jwt) {

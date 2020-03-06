@@ -55,7 +55,7 @@
         </ul>
       </div>
 
-      <router-link v-bind:to="'/students/:id/edit'">Edit Profile</router-link>
+      <router-link v-bind:to="'/students/1/edit'">Edit Profile</router-link>
     </div>
   </div>
 </template>
@@ -85,9 +85,9 @@ export default {
   },
   created: function() {
     axios
-      .get("/api/students/" + this.$route.params.id)
+      .get("/api/students/" + 1)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.student = response.data;
       });
   },
