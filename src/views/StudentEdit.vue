@@ -2,140 +2,173 @@
   <div class="student-edit">
     <div class="container">
       <div class="edit-bio-form">
-        <h1>Bio</h1>
-          <form v-on:submit.prevent="updateBio()">
-            <div>
-              First Name:
-              <input type="text" v-model="student.first_name">
-            </div>
-
-            <div>
-              Last Name: 
-              <input type="text" v-model="student.last_name">
-            </div>
-            <div>
-              Email: 
-              <input type="text" v-model="student.email"> 
-            </div>
-            <div>
-              Phone:
-              <input type="text" v-model="student.phone_number">
-           </div>
-            <div>
-              Bio: 
-              <input type="text" v-model="student.short_bio">
-            </div>
-            <div>
-              LinkedIn: 
-              <input type="text" v-model="student.linkedin_url">
-            </div>
-            <div>
-              Personal Site:
-              <input type="text" v-model="student.personal_website_url">
-            </div>
-            <div>
-              GitHub: 
-              <input type="text" v-model="student.github_url">
-            </div>
-            <div>
-              Location: 
-              <input type="text" v-model="student.city_state">
-            </div>
-          <input type="submit" value="update">
-        </form>  
+        <div class="container card border-secondary">
+          <h1 class="m-3">Bio</h1>
+            <div class="card-body">
+              <form v-on:submit.prevent="updateBio()">
+                <div class="form-group">
+                  <h4 class="text-left">First Name:</h4>
+                  <input type="text" class="form-control" v-model="student.first_name">
+                </div>
+                <div class="form-group">
+                  <h4 class="text-left">Last Name:</h4> 
+                  <input type="text" class="form-control" v-model="student.last_name">
+                </div>
+                <div class="form-group">
+                  <h4 class="text-left">Email:</h4>
+                  <input type="text" class="form-control" v-model="student.email"> 
+                </div>
+                <div class="form-group">
+                  <h4 class="text-left">Phone:</h4>
+                  <input type="text" class="form-control" v-model="student.phone_number">
+               </div>
+                <div class="form-group">
+                  <h4 class="text-left">Bio:</h4>
+                  <input type="text" class="form-control" v-model="student.short_bio">
+                </div>
+                <div class="form-group">
+                  <h4 class="text-left">LinkedIn:</h4> 
+                  <input type="text" class="form-control" v-model="student.linkedin_url">
+                </div>
+                <div class="form-group">
+                  <h4 class="text-left">Personal Site:</h4>
+                  <input type="text" class="form-control" v-model="student.personal_website_url">
+                </div>
+                <div class="form-group">
+                  <h4 class="text-left">GitHub:</h4> 
+                  <input type="text" class="form-control" v-model="student.github_url">
+                </div>
+                <div class="form-group">
+                  <h4 class="text-left">Location:</h4>
+                  <input type="text" class="form-control" v-model="student.city_state">
+                </div>
+              <input type="submit" class="btn btn-primary" value="update">
+            </form>  
+          </div>
+        </div>
       </div>
-      
+
+      <br>
+
       <div class="edit-experience-form">
-        <h1>Experience</h1>
-        <form v-for="experience in student.experiences" v-on:submit.prevent="updateExperience()">
-            <div>
-              Company Name:
-              <input type="text" v-model="experience.company_name">
+        <div class="container card border-secondary">
+          <h1 class="m-3">Experience</h1>
+          <form v-for="experience in student.experiences" class="card border-secondary m-3" v-on:submit.prevent="updateExperience(experience)">
+            <div class="card-body">
+              <div>
+                <h4 class="text-left">Company Name:</h4>
+                <input type="text" class="form-control" v-model="experience.company_name">
+              </div>
+              <br>
+              <div>
+                <h4 class="text-left">Start Date:</h4>
+                <input type="date" class="form-control" v-model="experience.start_date">
+              </div>
+              <br>
+              <div>
+                <h4 class="text-left">End Date:</h4>
+                <input type="date" class="form-control" v-model="experience.end_date">
+              </div>
+              <br>
+              <div>
+                <h4 class="text-left">Title:</h4>
+                <input type="text" class="form-control" v-model="experience.job_title">
+              </div>
+              <br>
+              <div>
+                <h4 class="text-left">Details</h4>
+                <input type="text" class="form-control" v-model="experience.details">
+              </div>
+              <br>
+              <div>
+                <h4 class="text-left">Current:</h4> 
+                <input type="text" class="form-control" v-model="experience.current">
+              </div>
+              <input type="submit" class="btn btn-primary m-3" value="update">
+              <button @click="destroyExperience(experience)" class="btn btn-danger m-3">Delete</button>
             </div>
-            <div>
-              Start Date:
-              <input type="date" v-model="experience.start_date">
-            </div>
-            <div>
-              End Date:
-              <input type="date" v-model="experience.end_date">
-            </div>
-            <div>
-              Title:
-              <input type="text" v-model="experience.job_title">
-            </div>
-            <div>
-              Details:
-              <input type="text" v-model="experience.details">
-            </div>
-            <div>
-              Current: 
-              <input type="text" v-model="experience.current">
-            </div>
-          <input type="submit" value="update">
-          <button @click="destroyExperience(experience)">Delete</button>
-        </form>
+          </form>
+        </div>
       </div>
-
+      <br>
       <div class="edit-education-form">
-        <h1>Education</h1>
-        <form  v-for="education in student.educations" v-on:submit.prevent="updateEducation()">
-            <div>
-              Institution Name:
-              <input type="text" v-model="education.university_name">
-            </div>
-            <div>
-              Start:
-              <input type="date" v-model="education.start_date">
-            </div>
-            <div>
-              End:
-              <input type="date" v-model="education.end_time">
-            </div>
-            <div>
-              Degree:
-              <input type="text" v-model="education.degree">
-            </div>
-            <div>
-              Details:
-              <input type="text" v-model="education.details">
-            </div>
-          <input type="submit" value="update">
-          <button @click="destroyEducation(education)">Delete</button>
-        </form>
+        <div class="container card border-secondary">
+          <h1 class="m-3">Education</h1>
+          <form  v-for="education in student.educations" class="card border-secondary m-3" v-on:submit.prevent="updateEducation(education)">
+            <div class="card-body">    
+                <div>
+                  <h4 class="text-left">Institution Name:</h4>
+                  <input type="text" class="form-control" v-model="education.university_name">
+                </div>
+                <br>
+                <div>
+                  <h4 class="text-left">Start Date:</h4>
+                  <input type="date" class="form-control" v-model="education.start_date">
+                </div>
+                <br>
+                <div>
+                  <h4 class="text-left">End Date:</h4>
+                  <input type="date" class="form-control" v-model="education.end_time">
+                </div>
+                <br>
+                <div>
+                  <h4 class="text-left">Degree:</h4>
+                  <input type="text" class="form-control" v-model="education.degree">
+                </div>
+                <br>
+                <div>
+                  <h4 class="text-left">Details:</h4>
+                  <input type="text" class="form-control" v-model="education.details">
+                </div>
+              <input type="submit" class="btn btn-primary m-3" value="update">
+              <button @click="destroyEducation(education)" class="btn btn-danger m-3">Delete</button>
+            </div>      
+          </form>  
+        </div>  
       </div>
-
+      <br>
       <div class="edit-projects-form">
-        <h1>Projects</h1>
-        <form v-for="project in student.projects" v-on:submit.prevent="updateProject()">
-          <div>
-            Name:
-            <input type="text" v-model="project.name">
-          </div>
-          <div>
-            Description: 
-            <input type="text" v-model="project.description">
-          </div>
-          <div>
-            Url:
-            <input type="text" v-model="project.url">
-          </div>
-           <input type="submit" value="update">
-          <button @click="destroyProject(project)">Delete</button>
-        </form>
+        <div class="container card border-secondary">
+          <h1 class="m-3">Projects</h1>
+          <form v-for="project in student.projects" class="card border-secondary m-3" v-on:submit.prevent="updateProject(project)">
+            <div class="card-body">
+              <div>
+                <h4 class="text-left">Name:</h4>
+                <input type="text" class="form-control" v-model="project.name">
+              </div>
+              <br>
+              <div>
+                <h4 class="text-left">Description:</h4> 
+                <input type="text" class="form-control" v-model="project.description">
+              </div>
+              <br>
+              <div>
+                <h4 class="text-left">URL:</h4>
+                <input type="text" class="form-control" v-model="project.url">
+              </div>
+               <input type="submit" class="btn btn-primary m-3" value="update">
+              <button @click="destroyProject(project)" class="btn btn-danger m-3">Delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <div class="edit-skills-form">
+        <div class="container card border-secondary">
+          <h1 class="m-3">SKILLS</h1>
+          <form v-for="skill in student.skills" class="card border-secondary m-3" v-on:submit.prevent="updateSkill(skill)">
+            <div class="card-body">
+              <div>
+                <h4 class="text-left">Skill:</h4>
+                <input type="text" class="form-control" v-model="skill.skill_name">
+              </div>
+              <input type="submit" class="btn btn-primary m-3" value="update">
+              <button @click="destroySkill(skill)" class="btn btn-danger m-3">Delete</button>
+            </div>
+          </form>
+        </div>
       </div>
 
-      <div class="edit-skills-form">
-        <h1>SKILLS</h1>
-        <form v-for="skill in student.skills" v-on:submit.prevent="updateSkills()">
-          <div>
-            Skill:
-            <input type="text" v-model="skill.skill_name">
-          </div>
-          <input type="submit" value="update">
-          <button @click="destroySkill(skill)">Delete</button>
-        </form>
-      </div>
     </div>
   </div>
 </template>
@@ -156,10 +189,10 @@ export default {
       personal_website_url: "",
       github_url: "",
       city_state: "",
-      experience: [],
-      education: [],
-      project: [],
-      skill: []
+      experiences: [],
+      educations: [],
+      projects: [],
+      skills: []
       },
       errors: []
     };
@@ -186,7 +219,7 @@ export default {
         city_state: this.student.city_state
       };
       axios
-      .patch("/api/students/1", clientParams)
+      .patch("/api/students/" + this.student.id, clientParams)
       .then(response => {
         this.student = response.data
         this.$router.push("/students/1")
@@ -196,67 +229,103 @@ export default {
         console.log(errors.response.data)
       });
     },
-    updateExperience: function() {
-      console.log("test");
-      console.log(this.experience);
+    updateExperience: function(inputExperience) {
       var clientParams = {
-        company_name: this.experience.company_name,
-        start_date: this.experience.start_date,
-        end_date: this.experience.end_date,
-        job_title: this.experience.job_title,
-        current: this.experience.current,
-        details: this.experience.details
+        company_name: inputExperience.company_name,
+        start_date: inputExperience.start_date,
+        end_date: inputExperience.end_date,
+        job_title: inputExperience.job_title,
+        current: inputExperience.current,
+        details: inputExperience.details
       };
       axios
-      .patch("/api/experiences/2", clientParams)
+      .patch("/api/experiences/" + inputExperience.id, clientParams)
       .then(response => {
-        this.$router.push("/students/" + 1)
+        this.$router.push("/students/" + this.student.id)
       }).catch(error => {
         this.errors = error.response.data.errors;
         console.log(errors.response.data)
       });
     },
-    updateEducation: function() {
+    updateEducation: function(inputEducation) {
       var clientParams = {
-        university_name: this.education.university_name,
-        degree: this.education.degree,
-        details: this.education.details
+        university_name: inputEducation.university_name,
+        degree: inputEducation.degree,
+        details: inputEducation.details
       };
       axios
-      .patch("/api/educations/5", clientParams)
+      .patch("/api/educations/" + inputEducation.id, clientParams)
       .then(response => {
-        this.$router.push("/students/" + 1)
+        this.$router.push("/students/" + this.student.id)
       }).catch(error => {
         this.errors = error.response.data.errors;
         console.log(errors.response.data)
       });
     },
-    updateProject: function() {
+    updateProject: function(inputProject) {
       var clientParams = {
         name: inputProject.name,
         description: inputProject.description,
         url: inputProject.url
       };
       axios
-      .patch("/api/projects/2" + this.inputProject.id, clientParams)
+      .patch("/api/projects/" + inputProject.id, clientParams)
       .then(response => {
-        this.$router.push("/students/" + 1)
+        this.$router.push("/students/" + this.student.id)
       }).catch(error => {
         this.errors = error.response.data.errors;
         console.log(errors)
       });
     },
-    updateSkill: function() {
+    updateSkill: function(inputSkill) {
       var clientParams = {
-        skill: inputSkill.skill_name
-      }
+        skill_name: inputSkill.skill_name
+      };
+      console.log(clientParams);
+      axios
+      .patch("/api/skills/" + inputSkill.id, clientParams)
+      .then(response => {
+        this.$router.push("/students/" + this.student.id)
+      }).catch(error => {
+        this.errors = error.response.data.errors;
+        console.log(errors)
+      });
     },
     destroyExperience: function(inputExperience) {
       axios
-        .delete("/api/students/" + this.$route.params.id + "/experiences/" + inputExperience.id)
+        .delete("/api/experiences/" + inputExperience.id)
         .then(response => {
-
-        })
+          console.log("success", response.data);
+          var index = this.experiences.indexOf(inputExperience.id);
+          this.experiences.splice(index, 1);
+        });
+    },
+    destroyEducation: function(inputEducation) {
+      axios
+        .delete("/api/educations/" + inputEducation.id)
+        .then(response => {
+          console.log("success", response.data);
+          var index = this.educations.indexOf(inputEducation.id);
+          this.educations.splice(index, 1);
+        });
+    },
+    destroyProject: function(inputProject) {
+      axios
+        .delete("/api/projects/" + inputProject.id)
+        .then(response => {
+          console.log("success", response.data);
+          var index = this.projects.indexOf(inputProject.id);
+          this.projects.splice(index, 1);
+        });
+    },
+    destroySkill: function(inputSkill) {
+      axios
+        .delete("/api/skills/" + inputSkill.id)
+        .then(response => {
+          console.log("success", response.data);
+          var index = this.skills.indexOf(inputSkill.id);
+          this.skills.splice(index, 1);
+        });
     },
   }
 };
