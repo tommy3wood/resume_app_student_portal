@@ -34,4 +34,8 @@ body{
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+ul {
+  list-style-type: none;
+}
 </style>
