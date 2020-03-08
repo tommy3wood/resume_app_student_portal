@@ -4,13 +4,16 @@
       <router-link to="/">Login</router-link> |
       <router-link to="/logout">Logout</router-link> |
       <router-link to="/students/:id">Student Profile</router-link> |
-      <router-link to="/edit">Edit Student Profile</router-link>
+      <router-link to="/students/:id/edit">Edit Student Profile</router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
 <style>
+body{
+  background-image: url("/criss-cross.png");
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
