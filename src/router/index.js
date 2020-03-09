@@ -13,7 +13,8 @@ import Edit from '../views/StudentEdit.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {path: '/', name: 'login',component: Login},
+  {path: '/', name: 'root',component: Login},
+  {path: '/login', name: 'login',component: Login},
   {path: '/logout', name: 'logout',component: Logout},
   {path: '/neweducation', name: 'new-education',component: NewEducation},
   {path: '/newexperience', name: 'new-experience',component: NewExperience},
