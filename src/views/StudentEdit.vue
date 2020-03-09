@@ -1,7 +1,7 @@
 <template>
   <div class="student-edit">
     <div class="container">
-      <div class="edit-bio-form">
+      <div class="edit-bio-form bg">
         <div class="container card border-secondary">
           <h1 class="m-3">Bio</h1>
             <div class="card-body">
@@ -42,7 +42,7 @@
                   <h4 class="text-left">Location:</h4>
                   <input type="text" class="form-control" v-model="student.city_state">
                 </div>
-              <input type="submit" class="btn btn-primary" value="update">
+              <input type="submit" class="btn btn-primary" value="Update">
             </form>  
           </div>
         </div>
@@ -50,7 +50,7 @@
 
       <br>
 
-      <div class="edit-experience-form">
+      <div class="edit-experience-form" id="form-bg">
         <div class="container card border-secondary">
           <h1 class="m-3">Experience</h1>
           <form v-for="experience in student.experiences" class="card border-secondary m-3" v-on:submit.prevent="updateExperience(experience)">
@@ -84,14 +84,14 @@
                 <h4 class="text-left">Current:</h4> 
                 <input type="text" class="form-control" v-model="experience.current">
               </div>
-              <input type="submit" class="btn btn-primary m-3" value="update">
+              <input type="submit" class="btn btn-primary m-3" value="Update">
               <button @click="destroyExperience(experience)" class="btn btn-danger m-3">Delete</button>
             </div>
           </form>
         </div>
       </div>
       <br>
-      <div class="edit-education-form">
+      <div class="edit-form">
         <div class="container card border-secondary">
           <h1 class="m-3">Education</h1>
           <form  v-for="education in student.educations" class="card border-secondary m-3" v-on:submit.prevent="updateEducation(education)">
@@ -120,14 +120,14 @@
                   <h4 class="text-left">Details:</h4>
                   <input type="text" class="form-control" v-model="education.details">
                 </div>
-              <input type="submit" class="btn btn-primary m-3" value="update">
+              <input type="submit" class="btn btn-primary m-3" value="Update">
               <button @click="destroyEducation(education)" class="btn btn-danger m-3">Delete</button>
             </div>      
           </form>  
         </div>  
       </div>
       <br>
-      <div class="edit-projects-form">
+      <div class="edit-form">
         <div class="container card border-secondary">
           <h1 class="m-3">Projects</h1>
           <form v-for="project in student.projects" class="card border-secondary m-3" v-on:submit.prevent="updateProject(project)">
@@ -146,14 +146,14 @@
                 <h4 class="text-left">URL:</h4>
                 <input type="text" class="form-control" v-model="project.url">
               </div>
-               <input type="submit" class="btn btn-primary m-3" value="update">
+               <input type="submit" class="btn btn-primary m-3" value="Update">
               <button @click="destroyProject(project)" class="btn btn-danger m-3">Delete</button>
             </div>
           </form>
         </div>
       </div>
       <br>
-      <div class="edit-skills-form">
+      <div class="edit-form">
         <div class="container card border-secondary">
           <h1 class="m-3">SKILLS</h1>
           <form v-for="skill in student.skills" class="card border-secondary m-3" v-on:submit.prevent="updateSkill(skill)">
@@ -162,7 +162,7 @@
                 <h4 class="text-left">Skill:</h4>
                 <input type="text" class="form-control" v-model="skill.skill_name">
               </div>
-              <input type="submit" class="btn btn-primary m-3" value="update">
+              <input type="submit" class="btn btn-primary m-3" value="Update">
               <button @click="destroySkill(skill)" class="btn btn-danger m-3">Delete</button>
             </div>
           </form>
@@ -199,7 +199,7 @@ export default {
   },
   created: function() {
     axios
-      .get("/api/students/" + 1)
+      .get("/api/students/" + this.$route.params.id)
       .then(response => {
         // console.log(response.data);
         this.student = response.data;
@@ -298,6 +298,7 @@ export default {
           console.log("success", response.data);
           var index = this.experiences.indexOf(inputExperience.id);
           this.experiences.splice(index, 1);
+          this.$router.push("students/" + this.student.id);
         });
     },
     destroyEducation: function(inputEducation) {
@@ -307,6 +308,7 @@ export default {
           console.log("success", response.data);
           var index = this.educations.indexOf(inputEducation.id);
           this.educations.splice(index, 1);
+          this.$router.push("students/" + this.student.id);
         });
     },
     destroyProject: function(inputProject) {
@@ -316,6 +318,7 @@ export default {
           console.log("success", response.data);
           var index = this.projects.indexOf(inputProject.id);
           this.projects.splice(index, 1);
+          this.$router.push("students/" + this.student.id);
         });
     },
     destroySkill: function(inputSkill) {
@@ -325,6 +328,7 @@ export default {
           console.log("success", response.data);
           var index = this.skills.indexOf(inputSkill.id);
           this.skills.splice(index, 1);
+          this.$router.push("students/" + this.student.id);
         });
     },
   }
